@@ -3,9 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "google-map-react": "^1.0.5",
+    "instagram-api": "^1.0.3",
     "react": "^16.4.1",
+    "react-burger-menu": "^2.5.2",
     "react-dom": "^16.4.1",
-    "react-scripts": "1.1.4"
+    "react-scripts": "1.1.4",
+    "react-simple-maps": "^0.12.1"
   },
   "scripts": {
     "start": "react-scripts start",
