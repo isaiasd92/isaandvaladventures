@@ -9,20 +9,26 @@
 }
 
 .App-header {
-  background-color: forestgreen;
-  height: 150px;
-  padding: 50px;
   color: white;
   font-family: 'Courgette', cursive;
   font-size: 30px;
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  position: fixed;
+  z-index: 1;
+  position: fixed;
+  left: 50%;
+  top: 5%;
+  transform: translate(-50%, -50%);
+  text-shadow:
+		-2px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
 }
 
-.App-title {
-  font-size: 100%;
+.banner-image {
+  background-image: url("./img/grass.jpg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
 }
 
 .App-intro {
@@ -41,13 +47,18 @@
   position: fixed;
   width: 36px;
   height: 30px;
-  left: 36px;
+  left: 25px;
   top: 36px;
 }
 
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
   background: white;
+  box-shadow: 0 0 0 2px black;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 /* Position and sizing of clickable cross button */
