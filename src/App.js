@@ -1,24 +1,19 @@
 import React, { Component } from 'react';
-//import logo from './logo.svg';
 import { bubble as Menu } from 'react-burger-menu';
-import GoogleMapReact from 'google-map-react';
-//import StickyHeader from 'react-sticky-header';
 import { Parallax, Background } from 'react-parallax';
+import ReactMapGL, {NavigationControl} from 'react-map-gl';
 
 /* CSS */
 import 'react-sticky-header/styles.css';
 import './App.css';
 
-class App extends Component {
-  static defaultProps = {
-    center: {
-      lat: 32.897480,
-      lng: -97.040443
-    },
-    zoom: 11
-  };
+import {MAP_TOKEN, MAP_STYLE} from './config';
 
+require ('dotenv').config();
+
+class App extends Component {
   render() {
+    const {updateViewport} = this.props;
     return (
       <div className="App">
         <Menu>
@@ -27,22 +22,7 @@ class App extends Component {
           <a id="contact" className="menu-item" href="/contact">Contact</a>
         </Menu>
         <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet" />
-          {/*
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h1 className="App-title">IsaAndValAdventures</h1>
-          </header>
-          */}
-          {/*
-          <StickyHeader
-            header={
-              <div className="Header_root App-header banner-image">
-                <h1 className="Header_title App-title">IsaAndValAdventures</h1>
-              </div>
-            }
-            >
-          </StickyHeader>
-          */}
+        <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.42.0/mapbox-gl.css' rel='stylesheet' />
         <body>
           <div>
             <Parallax
@@ -54,16 +34,30 @@ class App extends Component {
               <div style={{ height: '100px'}} />
             </Parallax>
             <Parallax strength={300}>
-              <div>Use the background component for custom elements</div>
+              <div>
+                Use the background component for custom elements
+              </div>
               <Background className="custom-bg">
               </Background>
             </Parallax>
           </div>
-          <div style={{ height: '100vh', width: '100%' }}>
-            <GoogleMapReact
-              defaultCenter={this.props.center}
-              defaultZoom={this.props.zoom}>
-            </GoogleMapReact>
+          <div>
+            <ReactMapGL 
+              mapStyle={MAP_STYLE}
+              width={400}
+              height={400}
+              latitude={31.169621}
+              longitude={-99.683617}
+              zoom={3}
+              onViewportChange = {(viewport) => {
+                const {width, height, latitude, longitude, zoom} = viewport;
+              }}
+              mapboxApiAccessToken={MAP_TOKEN}
+            >
+              <div style={{position: 'absolute', right: 0}}>
+                <NavigationControl onViewportChange={updateViewport} />
+              </div>
+            </ReactMapGL>
           </div>
         </body>
       </div>
